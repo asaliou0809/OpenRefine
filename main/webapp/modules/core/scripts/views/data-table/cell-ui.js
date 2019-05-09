@@ -90,11 +90,19 @@ DataTableCellUI.prototype._render = function() {
       .text(cell.v)
       .appendTo(divContent);
     } else if (URL.looksLikeUrl(cell.v)) {
-      $('<a>')
-      .text(cell.v)
-      .attr("href", cell.v)
-      .attr("target", "_blank")
-      .appendTo(divContent);
+      if (cell.v.endsWith(".jpg") || cell.v.endsWith(".jpeg") || cell.v.endsWith(".png")) {
+        $('<img>')
+        .attr("src", cell.v)
+        .attr("href", cell.v)
+        .attr("target", "_blank")
+        .appendTo(divContent);
+      } else {
+        $('<a>')
+        .text(cell.v)
+        .attr("href", cell.v)
+        .attr("target", "_blank")
+        .appendTo(divContent);
+      }
     } else {
       $('<span>')
       .text(cell.v)
